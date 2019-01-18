@@ -1,5 +1,6 @@
 package org.cucumber.cucumber;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
 
 public class SimpleForm {
      static WebDriver driver;
@@ -20,13 +22,13 @@ public void user_inistialize_the_selenium_easy_page() {
 
 @Given("user navigate to the input form")
 public void user_navigate_to_the_input_form() {
-   driver.findElement(By.xpath("//a[@class='dropdown-toggle']")).click();
+	 driver.findElement(By.xpath("(//a[@class='dropdown-toggle'])[1]")).click();
    
 }
 
 @When("User click simple form")
 public void user_click_simple_form() {
-	driver.findElement(By.xpath("//a[text()='Simple Form Demo']")).click();
+	driver.findElement(By.xpath("(//a[text()='Simple Form Demo'])[1]")).click();
 }
 
 @When("Insert a message & add value")
@@ -40,6 +42,8 @@ public void insert_a_message_add_value() {
 
 @Then("User verfies the given msg values")
 public void user_verfies_the_given_msg_values() {
-  
+Assert.assertEquals("hello",driver.findElement(By.id("display")).getText());
+Assert.assertEquals("120", driver.findElement(By.id("displayvalue")).getText());
+
 }
 }
